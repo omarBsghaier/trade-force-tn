@@ -2,6 +2,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tradeforcetn/pages/home/home_page.dart';
+import 'package:tradeforcetn/pages/index_page.dart';
 import 'package:tradeforcetn/pages/settings/settings_page.dart';
 import 'package:tradeforcetn/utils/icons.dart';
 import 'package:tradeforcetn/widget/LinearGradientMask.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         bottomAppBarColor: AppColors.signupButtonColor
       ),
-      home:  SettingsPage (),
+      home:  IndexPage (),
     );
   }
 }

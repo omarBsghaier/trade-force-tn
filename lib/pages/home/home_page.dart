@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:line_chart/charts/line-chart.widget.dart';
+import 'package:line_chart/model/line-chart.model.dart';
 
 import '../../utils/colors.dart';
-import '../../utils/icons.dart';
-import '../../widget/LinearGradientMask.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,220 +14,524 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0 ;
-  void _onItemTap (int index ){
-    setState(() {
-      _selectedIndex = index ;
-    });
+  late int _activetab  ;
+  void initState() {
+    super.initState();
+    _activetab = 0 ;
   }
+   List<String> home_categorie = [
+     "Gainers",
+     "Losers",
+     "Index"
+   ] ;
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
+    double largeur = queryData.size.width;
+    double hauteur = queryData.size.height;
+
+
+    List<LineChartModel> data = [
+      LineChartModel(amount: 300, date: DateTime(2020, 1, 1)),
+      LineChartModel(amount: 200, date: DateTime(2020, 1, 2)),
+      LineChartModel(amount: 300, date: DateTime(2020, 1, 3)),
+      LineChartModel(amount: 500, date: DateTime(2020, 1, 4)),
+      LineChartModel(amount: 800, date: DateTime(2020, 1, 5)),
+      LineChartModel(amount: 200, date: DateTime(2020, 1, 6)),
+      LineChartModel(amount: 120, date: DateTime(2020, 1, 7)),
+      LineChartModel(amount: 140, date: DateTime(2020, 1, 8)),
+      LineChartModel(amount: 110, date: DateTime(2020, 1, 9)),
+      LineChartModel(amount: 250, date: DateTime(2020, 1, 10)),
+      LineChartModel(amount: 390, date: DateTime(2020, 1, 11)),
+      LineChartModel(amount: 1300, date: DateTime(2020, 1, 12)),
+    ];
+
+    Paint linePaint = Paint()
+      ..strokeWidth = 2.5
+      ..style = PaintingStyle.stroke
+      ..color = Colors.green;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body:  Container(
-        margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0,bottom:  400.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30.0),
-          color: AppColors.signupButtonColor,
-        ),
-
-
-
-
-        child:Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(padding: EdgeInsets.only(left:20 ,top: 30.0),
-              child :  Text("Home" , style : TextStyle( color: Colors.white,fontSize: 24 ,fontWeight: FontWeight.bold ),),
+      body: Column(
+        children: [
+          Container(
+            width: largeur,
+            height: hauteur / 4,
+            margin: EdgeInsets.only(
+                left: 20.0, right: 20.0, top: 20.0, bottom: 10.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30.0),
+              color: AppColors.signupButtonColor,
             ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(padding: EdgeInsets.only(left: 20, top: 30.0),
+                  child: Text("Home", style: TextStyle(color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),),
+                ),
+
+                SizedBox(height: 38),
+                Container(
+                  width: largeur,
+                  height: 48,
+                  margin: EdgeInsets.only(left: 14, right: 14, bottom: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(45.0),
+                    color: AppColors.backgroundButtonhomeColor,
+                  ),
+
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                     child : Row ( children : List.generate(3, (index) {
+                      return GestureDetector(
+                        child: Container(
+                            margin: EdgeInsets.all(10),
+                            decoration: _activetab == index ? ShapeDecoration(shape: StadiumBorder(),
+                            gradient: LinearGradient (
+                              colors: [
+                                AppColors.signinButtonFirstColor ,
+                                AppColors.signinButtonSecondColor,
+                              ]
+
+                            )
+
+                          ) : ShapeDecoration(shape: StadiumBorder(), color: AppColors.backgroundButtonhomeColor ) ,
+
+                            child :ElevatedButton(
+
+                              style: ElevatedButton.styleFrom(
+
+                                shape: StadiumBorder(),
+                               // desctivate color and shadow
+                                primary: _activetab == index ?Colors.transparent : AppColors.backgroundColor  ,
+                                shadowColor: Colors.transparent ,
+                                elevation: 0 ,
+
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _activetab = index ;
+
+                                });
+                              },
+
+                              child: Container(
+                                alignment: Alignment.center,
+                                child:  Text(
+                                  home_categorie[index],
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color:  Colors.white),
+                                ),
+                              ),
 
 
-            SizedBox(height: 38),
-            Container(
-              height: 48 ,
-              margin: EdgeInsets.only(left:14, right: 14),
-              padding: EdgeInsets.only(top:7, bottom: 7) ,
+                            ),
+                          ),
+
+
+
+
+                      );
+                    },
+                    ),
+                     ),
+
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+
+
+
+        if (_activetab == 2 )
+          Column(
+              mainAxisAlignment : MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+              width: largeur,
+              height: hauteur / 4.8,
+              margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 10.0),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(45.0),
-                color: AppColors.backgroundButtonhomeColor,
+                borderRadius: BorderRadius.circular(30.0),
+                color: AppColors.signupButtonColor,
               ),
-              child: Row(
+                 child: Center(child : Text('Fear and greed index' ,
+                     style: TextStyle(
+                      fontWeight: FontWeight.w500 ,
+                       color:  Colors.white,
+                       fontSize: 18 ,
+                 )
+                 )
+                   ,)
 
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    style: ButtonStyle(
 
-                        backgroundColor: MaterialStateProperty.all(AppColors.ProviderButtonColor),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(80.0)),
-                        ))
-
-                    ),
-                    onPressed: () { },
-
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: const Text(
-                        'Gainers',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
+                ),
+              Container(
+                  width: largeur,
+                  height: hauteur / 4.8,
+                  margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 10.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30.0),
+                    color: AppColors.signupButtonColor,
                   ),
+                  child: Center(child : Text('Longs and shorts index' ,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500 ,
+                        color:  Colors.white,
+                        fontSize: 18 ,
+                      )
+                  )
+                    ,)
 
-                  ElevatedButton(
 
+              ),
+            ],
+          )
+          else if ( _activetab == 1)
+          ListView(
+            clipBehavior: Clip.hardEdge,
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0) ,
+                width: largeur,
+                height: hauteur/8.5 ,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                  color: AppColors.backgroundButtonhomeColor,
+                ),
+                child: Row(
+                  children: [
+                    Padding(   padding: EdgeInsets.all( 10),
+                      child:  Image.asset('images/bitcoin.png'),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(padding: EdgeInsets.only(bottom: 5, left: 5),
+                          child:Text('BTCUSDT' ,
+                            style: TextStyle(
+                                color : Color.fromRGBO(181, 180, 255, 1),
+                                fontSize: 19,
+                                fontWeight: FontWeight.w800 ),), ),
 
-                    style: ButtonStyle(
-                        backgroundColor:
-                        MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed)) return Colors.green;
-                            return AppColors.ProviderButtonColor;
-                          },
+                        Padding(padding: EdgeInsets.only(bottom: 10, left: 5, right: 10),
+                          child  :  Text('\$ 42.00000000',
+                            style: TextStyle(
+                                color: Colors.white
+                            ),
+                          ),
                         ),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(80.0)),
-                        ))
-
+                      ],
                     ),
-                    onPressed: () {
-                      setState(() {
-                      });
 
-                    },
-
-                    child: Container(
+                    LineChart(width: 60, height: 40, data: data, linePaint: linePaint),
+                    Container (
                       alignment: Alignment.center,
-                      child: const Text(
-                        'Losers',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
+                      margin: EdgeInsets.all(10),
+
+                      child :  Container (
+                        margin : EdgeInsets.symmetric(horizontal: 5, vertical:  5 ),
+                        child :Column(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment .center,
+                        children: [
+                          Text("10%",style: TextStyle(
+                            fontWeight: FontWeight.w700 ,
+                            color: Colors.white ,
+                            fontSize: 18,
+                          ),),
+                          Icon(Icons.arrow_drop_down , color: Color.fromRGBO(181, 180, 255, 1)),
+
+                        ],
                       ),
                     ),
-                  ),
-
-                  ElevatedButton(
-
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(AppColors.ProviderButtonColor),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(80.0)),
-                        ))
-
-                    ),
-                    onPressed: () {
-
-                    },
 
 
-                    child: Container(
-                      // constraints: const BoxConstraints(minWidth: 88.0, minHeight: 36.0), // min sizes for Material buttons
-                      alignment: Alignment.center,
-                      child: const Text(
-                        'Index',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-
-                ],
-
-              )
-              ,
-            )
-          ],
-        ),
-      ),
-
-
-
-
-
-
-      bottomNavigationBar: Container(
-
-        clipBehavior: Clip.hardEdge,
-        margin: EdgeInsets.only(left: 16, right: 16 , bottom: 20 ),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20.0)),
-        child: BottomNavigationBar (
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          unselectedItemColor: Colors.white,
-
-          backgroundColor: AppColors.iconButtonColor,
-          type: BottomNavigationBarType.fixed,
-
-
-          items:    [
-            BottomNavigationBarItem(
-              activeIcon: LinearGradientMask(child: Icon(
-                Icons.home  ,
-                color: Colors.white,
-              )
+    ),
+                  ],
+                ),
               ),
-
-              icon: Icon(  Icons.home , size: 30 ),
-              label :  'home' ,
-
-
-            ) ,
-            BottomNavigationBarItem(
-
-                activeIcon: LinearGradientMask(child: Icon(
-                  Icons.home  ,
-                  color: Colors.white,
-                  size: 25 ,
-                )
+              Container(
+                margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0) ,
+                width: largeur,
+                height: hauteur/8.5 ,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                  color: AppColors.backgroundButtonhomeColor,
                 ),
+                child: Row(
+                  children: [
+                    Padding(   padding: EdgeInsets.all( 10),
+                      child:  Image.asset('images/bitcoin.png'),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(padding: EdgeInsets.only(bottom: 5, left: 5),
+                          child:Text('BTCUSDT' ,
+                            style: TextStyle(
+                                color : Color.fromRGBO(181, 180, 255, 1),
+                                fontSize: 19,
+                                fontWeight: FontWeight.w800 ),), ),
+
+                        Padding(padding: EdgeInsets.only(bottom: 10, left: 5, right: 10),
+                          child  :  Text('\$ 42.00000000',
+                            style: TextStyle(
+                                color: Colors.white
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    LineChart(width: 60, height: 40, data: data, linePaint: linePaint),
+                    Container (
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.all(10),
+
+                      child :Column(
+                        children: [
+                          Text("18%",style: TextStyle(
+                            fontWeight: FontWeight.w700 ,
+                            color: Colors.white ,
+                            fontSize: 18,
+                          ),),
+                          Icon(Icons.arrow_drop_down , color: Color.fromRGBO(181, 180, 255, 1)),
+
+                        ],
+                      ),
+                    ),
 
 
 
-
-                icon: Icon( MyFlutterApp.graduation_cap),
-                label: 'learn'
-            ),
-            BottomNavigationBarItem(
-
-                activeIcon: LinearGradientMask(child: Icon(
-                  Icons.home  ,
-                  color: Colors.white,
-                )
+                  ],
                 ),
-                icon: Icon (MyFlutterApp.exchange, size: 30 ),
-                label: 'spot'
-            ),
-            BottomNavigationBarItem(
-                activeIcon: LinearGradientMask(child: Icon(
-                  Icons.home  ,
-                  color: Colors.white,
-                )
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0) ,
+                width: largeur,
+                height: hauteur/8.5 ,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                  color: AppColors.backgroundButtonhomeColor,
                 ),
-                icon: Icon( Icons.notifications_none, size: 30 ),
-                label: 'notifications'
-            ),
-            BottomNavigationBarItem(
-                activeIcon: LinearGradientMask(child: Icon(
-                  Icons.home  ,
-                  color: Colors.white,
-                )
+                child: Row(
+                  children: [
+                    Padding(   padding: EdgeInsets.all( 10),
+                      child:  Image.asset('images/bitcoin.png'),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(padding: EdgeInsets.only(bottom: 5, left: 5),
+                          child:Text('BTCUSDT' ,
+                            style: TextStyle(
+                                color : Color.fromRGBO(181, 180, 255, 1),
+                                fontSize: 19,
+                                fontWeight: FontWeight.w800 ),), ),
+
+                        Padding(padding: EdgeInsets.only(bottom: 10, left: 5, right: 10),
+                          child  :  Text('\$ 42.00000000',
+                            style: TextStyle(
+                                color: Colors.white
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    LineChart(width: 60, height: 40, data: data, linePaint: linePaint),
+                    Container (
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.all(10),
+
+                      child :Column(
+                        children: [
+                          Text("18%",style: TextStyle(
+                            fontWeight: FontWeight.w700 ,
+                            color: Colors.white ,
+                            fontSize: 18,
+                          ),),
+                          Icon(Icons.arrow_drop_down , color: Color.fromRGBO(181, 180, 255, 1)),
+
+                        ],
+                      ),
+                    ),
+
+
+
+                  ],
                 ),
-                icon: Icon( Icons.settings, size: 30 ),
-                label :  'settings'
-            ),
+              ),
+            ],
+          )
+          else
+          ListView(
+            clipBehavior: Clip.hardEdge,
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0) ,
+                width: largeur,
+                height: hauteur/8.5 ,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                  color: AppColors.backgroundButtonhomeColor,
+                ),
+                child: Row(
+                  children: [
+                    Padding(   padding: EdgeInsets.all( 10),
+                      child:  Image.asset('images/bitcoin.png'),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(padding: EdgeInsets.only(bottom: 5, left: 5),
+                          child:Text('BTCUSDT' ,
+                            style: TextStyle(
+                                color : Color.fromRGBO(181, 180, 255, 1),
+                                fontSize: 19,
+                                fontWeight: FontWeight.w800 ),), ),
+
+                        Padding(padding: EdgeInsets.only(bottom: 10, left: 5, right: 10),
+                          child  :  Text('\$ 42.00000000',
+                            style: TextStyle(
+                                color: Colors.white
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    LineChart(width: 60, height: 40, data: data, linePaint: linePaint),
 
 
-          ],
-          currentIndex : _selectedIndex ,
-          onTap: _onItemTap ,
-        ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0) ,
+                width: largeur,
+                height: hauteur/8.5 ,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                  color: AppColors.backgroundButtonhomeColor,
+                ),
+                child: Row(
+                  children: [
+                    Padding(   padding: EdgeInsets.all( 10),
+                      child:  Image.asset('images/bitcoin.png'),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(padding: EdgeInsets.only(bottom: 5, left: 5),
+                          child:Text('BTCUSDT' ,
+                            style: TextStyle(
+                                color : Color.fromRGBO(181, 180, 255, 1),
+                                fontSize: 19,
+                                fontWeight: FontWeight.w800 ),), ),
 
+                        Padding(padding: EdgeInsets.only(bottom: 10, left: 5, right: 10),
+                          child  :  Text('\$ 42.00000000',
+                            style: TextStyle(
+                                color: Colors.white
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    LineChart(width: 60, height: 40, data: data, linePaint: linePaint),
+
+
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0) ,
+                width: largeur,
+                height: hauteur/8.5 ,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                  color: AppColors.backgroundButtonhomeColor,
+                ),
+                child: Row(
+                  children: [
+                    Padding(   padding: EdgeInsets.all( 10),
+                      child:  Image.asset('images/bitcoin.png'),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(padding: EdgeInsets.only(bottom: 5, left: 5),
+                          child:Text('BTCUSDT' ,
+                            style: TextStyle(
+                                color : Color.fromRGBO(181, 180, 255, 1),
+                                fontSize: 19,
+                                fontWeight: FontWeight.w800 ),), ),
+
+                        Padding(padding: EdgeInsets.only(bottom: 10, left: 5, right: 10),
+                          child  :  Text('\$ 42.00000000',
+                            style: TextStyle(
+                                color: Colors.white
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    LineChart(width: 60, height: 40, data: data, linePaint: linePaint),
+                    Container (
+                      alignment: Alignment.center,
+                        margin: EdgeInsets.all(10),
+
+                        child :Column(
+                          children: [
+                            Icon(Icons.arrow_drop_up , color: Color.fromRGBO(181, 180, 255, 1)),
+                            Text("18%",style: TextStyle(
+                              fontWeight: FontWeight.w700 ,
+                              color: Colors.white ,
+                              fontSize: 18,
+                            ),),
+
+                          ],
+                        ),
+                      ),
+
+
+
+                  ],
+                ),
+              ),
+            ],
+          )
+
+
+        ],
       ),
-    )  ;
+
+
+
+
+
+    ) ;
   }
 
-}
+  } 
