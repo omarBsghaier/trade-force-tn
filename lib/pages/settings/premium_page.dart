@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:tradeforcetn/pages/home/home_page.dart';
+import 'package:tradeforcetn/pages/index_page.dart';
 import 'package:tradeforcetn/widget/LinearGradientMask.dart';
 
 import '../../utils/colors.dart';
@@ -21,7 +23,10 @@ class PremiumPage   extends StatelessWidget {
           Container(
             alignment: Alignment.topLeft,
             margin: EdgeInsets.only(top: 20 , left:  20 ),
-            child :Icon(  Icons.arrow_back , color: Colors.white ,size: 36,),),
+            child :IconButton(  onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => IndexPage()));
+              ;
+            }, icon : Icon(Icons.arrow_back , color: Colors.white ), ),),
 
           Container(
             margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0) ,

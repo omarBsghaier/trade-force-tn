@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 import '../../utils/colors.dart';
+import '../index_page.dart';
 
 class SupportPage extends StatefulWidget {
   const SupportPage({Key? key}) : super(key: key);
@@ -27,8 +28,12 @@ class _SupportPageState extends State<SupportPage> {
           Container(
            alignment: Alignment.topLeft,
            margin: EdgeInsets.only(top: 20 , left:  20 ),
-           child :Icon(  Icons.arrow_back , color: Colors.white ,size: 36,),),
-          Container(
+            child : IconButton( icon:  Icon(Icons.arrow_back , color: Colors.white ),
+              onPressed: () {
+               Navigator.of(context).push(MaterialPageRoute(builder: (context) => IndexPage()));
+
+              },), ),
+           Container(
             margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0 , bottom: 15) ,
             width: largeur,
             height: hauteur/6.5 ,
