@@ -19,6 +19,7 @@ class IndexPage extends StatefulWidget {
 
 class _IndexPageState extends State<IndexPage> {
   int _selectedIndex = 0;
+  //aaaaaaaaaaaaaaaaa
 
   final screens = [
     HomePage(),
