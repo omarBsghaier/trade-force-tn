@@ -1,6 +1,7 @@
-import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:tradeforcetn/api/google_sign_in_api.dart';
 import 'package:tradeforcetn/pages/home/home_page.dart';
 import 'package:tradeforcetn/pages/index_page.dart';
 import 'package:tradeforcetn/pages/settings/settings_page.dart';
@@ -40,7 +41,13 @@ class MyApp extends StatelessWidget {
 }
 
 class   SignUp extends StatelessWidget {
-  const SignUp ({Key? key}) : super(key: key);
+
+   SignUp ({Key? key}) : super(key: key);
+  final  GoogleSignIn  _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email'
+    ]
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +105,7 @@ class   SignUp extends StatelessWidget {
             ),
 
 
-            onPressed: () { },
+            onPressed: signIn  ,
             child: Ink(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
@@ -124,6 +131,11 @@ class   SignUp extends StatelessWidget {
     ),
 
       );
+  }
+
+Future  signIn() async {
+    await GoogleSignInApi.login() ;
+    print('aaaaaaaaaaaa mcheet');
   }
 }
 
