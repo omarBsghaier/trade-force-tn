@@ -20,73 +20,28 @@ class _NotificationPageState extends State<NotificationPage> {
     double hauteur = queryData.size.height;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: Column(
+      body: SafeArea(
+        child: Column(
           crossAxisAlignment : CrossAxisAlignment.center ,
           mainAxisAlignment: MainAxisAlignment.start,
           children : [
 
-         Container(
-        margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0) ,
-      width: largeur,
-      height: hauteur/6.5 ,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30.0),
-        color: AppColors.backgroundButtonhomeColor,
-      ),
-      child: Padding(padding: EdgeInsets.only(left:20 ,top: 25.0),
-        child :  Text("Notification" , style : TextStyle( color: Colors.white,fontSize: 18 ,fontWeight: FontWeight.bold ),),
-      ),
-    ),
-            ListView(                      // pour le momment list static , builder dynamique
-            scrollDirection: Axis.vertical,
-             shrinkWrap: true,
-              children : [
-                Container(
-               margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0) ,
-                width: largeur,
-                height: hauteur/8.5 ,
-                decoration: BoxDecoration(
+            Container(
+              margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0) ,
+              width: largeur,
+              height: hauteur/6.5 ,
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30.0),
                 color: AppColors.backgroundButtonhomeColor,
-               ),
-               child: Row( 
-                 children: [
-                 Padding(padding: EdgeInsets.all(7),
-
-                   child :Image.asset('images/bitcoin.png'),),
-                   Column(
-                     mainAxisAlignment: MainAxisAlignment.center,
-                     children: [
-                       Padding(padding: EdgeInsets.only(bottom: 5),
-                         child:Text('BTCUSDT' ,
-                           style: TextStyle(
-                               color : Color.fromRGBO(181, 180, 255, 1),
-                               fontSize: 17,
-                               fontWeight: FontWeight.w800 ),), ),
-                       Padding(padding: EdgeInsets.only(bottom: 5, left: 10),
-                         child:Text('Signal closet with - 8,99 % Loss',
-                           style: TextStyle(
-                               color : Color.fromRGBO(255, 3, 75, 1),
-                               fontSize: 12,
-                               fontWeight: FontWeight.w800 ),), ),
-
-                     ],
-                   ),
-                   Container(
-                     width:MediaQuery.of(context).size.width /4 ,
-                     margin: EdgeInsets.only(top : 15  ),
-                     alignment: Alignment.topRight,
-                      child:  Text('Mar 21,01:27 PM' ,style: TextStyle(
-                        fontSize: 13,
-                        color: Color.fromRGBO(74, 0, 255, 1)
-                      ),)
-                   )
-                   
-                 ],
-               ),
-
-
               ),
+              child: Padding(padding: EdgeInsets.only(left:20 ,top: 25.0),
+                child :  Text("Notification" , style : TextStyle( color: Colors.white,fontSize: 18 ,fontWeight: FontWeight.bold ),),
+              ),
+            ),
+            ListView(                      // pour le momment list static , builder dynamique
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              children : [
                 Container(
                   margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0) ,
                   width: largeur,
@@ -96,34 +51,35 @@ class _NotificationPageState extends State<NotificationPage> {
                     color: AppColors.backgroundButtonhomeColor,
                   ),
                   child: Row(
-                    children: [
-                      Padding(padding: EdgeInsets.all(7),
+                    mainAxisAlignment: MainAxisAlignment.start,
 
+                    children: [
+                      Padding(padding: EdgeInsets.all(4),
                         child :Image.asset('images/bitcoin.png'),),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(padding: EdgeInsets.only(bottom: 5),
+                          Padding(padding: EdgeInsets.only(bottom: 5 ,left: 4),
                             child:Text('BTCUSDT' ,
                               style: TextStyle(
                                   color : Color.fromRGBO(181, 180, 255, 1),
-                                  fontSize: 17,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w800 ),), ),
-                          Padding(padding: EdgeInsets.only(bottom: 5, left: 10),
+                          Padding(padding: EdgeInsets.only(bottom: 5,left : 4 ),
                             child:Text('Signal closet with - 8,99 % Loss',
                               style: TextStyle(
                                   color : Color.fromRGBO(255, 3, 75, 1),
-                                  fontSize: 12,
+                                  fontSize: 10,
                                   fontWeight: FontWeight.w800 ),), ),
 
                         ],
                       ),
                       Container(
-                          width:MediaQuery.of(context).size.width /4 ,
                           margin: EdgeInsets.only(top : 15  ),
                           alignment: Alignment.topRight,
                           child:  Text('Mar 21,01:27 PM' ,style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 10,
                               color: Color.fromRGBO(74, 0, 255, 1)
                           ),)
                       )
@@ -133,103 +89,14 @@ class _NotificationPageState extends State<NotificationPage> {
 
 
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0) ,
-                  width: largeur,
-                  height: hauteur/8.5 ,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30.0),
-                    color: AppColors.backgroundButtonhomeColor,
-                  ),
-                  child: Row(
-                    children: [
-                      Padding(padding: EdgeInsets.all(7),
-
-                        child :Image.asset('images/bitcoin.png'),),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(padding: EdgeInsets.only(bottom: 5),
-                            child:Text('BTCUSDT' ,
-                              style: TextStyle(
-                                  color : Color.fromRGBO(181, 180, 255, 1),
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w800 ),), ),
-                          Padding(padding: EdgeInsets.only(bottom: 5, left: 10),
-                            child:Text('Signal closet with - 8,99 % Loss',
-                              style: TextStyle(
-                                  color : Color.fromRGBO(255, 3, 75, 1),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w800 ),), ),
-
-                        ],
-                      ),
-                      Container(
-                          width:MediaQuery.of(context).size.width /4 ,
-                          margin: EdgeInsets.only(top : 15  ),
-                          alignment: Alignment.topRight,
-                          child:  Text('Mar 21,01:27 PM' ,style: TextStyle(
-                              fontSize: 13,
-                              color: Color.fromRGBO(74, 0, 255, 1)
-                          ),)
-                      )
-
-                    ],
-                  ),
 
 
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0) ,
-                  width: largeur,
-                  height: hauteur/8.5 ,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30.0),
-                    color: AppColors.backgroundButtonhomeColor,
-                  ),
-                  child: Row(
-                    children: [
-                      Padding(padding: EdgeInsets.all(7),
-
-                        child :Image.asset('images/bitcoin.png'),),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(padding: EdgeInsets.only(bottom: 5),
-                            child:Text('BTCUSDT' ,
-                              style: TextStyle(
-                                  color : Color.fromRGBO(181, 180, 255, 1),
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w800 ),), ),
-                          Padding(padding: EdgeInsets.only(bottom: 5, left: 10),
-                            child:Text('Signal closet with - 8,99 % Loss',
-                              style: TextStyle(
-                                  color : Color.fromRGBO(255, 3, 75, 1),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w800 ),), ),
-
-                        ],
-                      ),
-                      Container(
-                          width:MediaQuery.of(context).size.width /4 ,
-                          margin: EdgeInsets.only(top : 15  ),
-                          alignment: Alignment.topRight,
-                          child:  Text('Mar 21,01:27 PM' ,style: TextStyle(
-                              fontSize: 13,
-                              color: Color.fromRGBO(74, 0, 255, 1)
-                          ),)
-                      )
-
-                    ],
-                  ),
-
-
-                ),
 
               ],
-             ),
-     ],
-    ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

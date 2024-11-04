@@ -95,7 +95,7 @@ class _SupportPageState extends State<SupportPage> {
            Container(
              margin: EdgeInsets.only(left: 30.0 , right: 30.0 ,top: 20.0) ,
              width: largeur,
-             height: hauteur/2.6,
+             height: 3*hauteur/10,
              decoration: BoxDecoration(
                borderRadius: BorderRadius.circular(30.0),
                color: AppColors.backgroundButtonSettingDisabledColor,
@@ -139,10 +139,12 @@ class _SupportPageState extends State<SupportPage> {
                  child: Container(
                    constraints: const BoxConstraints(minWidth: 88.0, minHeight: 36.0), // min sizes for Material buttons
                    alignment: Alignment.bottomLeft,
-                   child: const Text(
+                   child:  Padding (padding: EdgeInsets.all(4),
+                   child : const Text(
                      'Submit',
                      textAlign: TextAlign.center,
                      style: TextStyle(color: Colors.white),
+                    ),
                    ),
                  ),
                ),

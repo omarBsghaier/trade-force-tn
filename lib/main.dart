@@ -10,11 +10,12 @@ import 'package:tradeforcetn/widget/LinearGradientMask.dart';
 import 'package:tradeforcetn/utils/colors.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(  MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+    MyApp({Key? key}) : super(key: key);
+
 
   // This widget is the root of your application.
   @override
@@ -35,19 +36,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         bottomAppBarColor: AppColors.signupButtonColor
       ),
-      home:  IndexPage (),
+      home:  SignUp (),
     );
   }
 }
 
 class   SignUp extends StatelessWidget {
-
    SignUp ({Key? key}) : super(key: key);
-  final  GoogleSignIn  _googleSignIn = GoogleSignIn(
-    scopes: [
-      'email'
-    ]
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +100,11 @@ class   SignUp extends StatelessWidget {
             ),
 
 
-            onPressed: signIn  ,
+            onPressed: () async {
+              await GoogleSignInApi.login() ;
+             print('aaaaaaaaaaaa mcheet');
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => IndexPage()));
+             } ,
             child: Ink(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
@@ -133,7 +132,7 @@ class   SignUp extends StatelessWidget {
       );
   }
 
-Future  signIn() async {
+Future  signIn( ) async {
     await GoogleSignInApi.login() ;
     print('aaaaaaaaaaaa mcheet');
   }

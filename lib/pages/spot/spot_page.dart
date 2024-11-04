@@ -47,205 +47,208 @@ class _SpotPageState extends State<SpotPage> {
     double hauteur = queryData.size.height;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body:  Column (
-          children : [
-            Container(
-              width: largeur,
-              margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0,bottom:  20.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.0),
-                color: AppColors.signupButtonColor,
+      body: SafeArea(
+        child: Column (
+            children : [
+              Container(
+                width: largeur,
+                margin: EdgeInsets.only( left: 20.0, right: 20.0, top: 20.0, bottom: 10.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                  color: AppColors.signupButtonColor,
+                ),
+
+
+
+                child:Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(padding: EdgeInsets.only(left:20 ,top: 30.0),
+                      child :  Text("Spot" , style : TextStyle( color: Colors.white,fontSize: 24 ,fontWeight: FontWeight.bold ),),
+                    ),
+
+
+                    SizedBox(height: 38),
+                    Container(
+                      width: largeur /1.2,
+                      height: 48 ,
+                      margin: EdgeInsets.only(left:14, right: 14, bottom:  10 ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(45.0),
+                        color: AppColors.backgroundButtonhomeColor,
+                      ),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children : List.generate(3, (index) {
+                            return GestureDetector(
+                              child :  Container(
+                                  margin: EdgeInsets.all(8),
+                                  decoration: _activetab == index ? ShapeDecoration(shape: StadiumBorder(),
+                                      gradient: LinearGradient (
+                                          colors: [
+                                            AppColors.signinButtonFirstColor ,
+                                            AppColors.signinButtonSecondColor,
+                                          ]
+
+                                      )
+
+                                  ) : ShapeDecoration(shape: StadiumBorder(), color: AppColors.backgroundButtonhomeColor ) ,
+
+                                  child : ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+
+                                      shape: StadiumBorder(),
+                                      // desctivate color and shadow
+                                      primary: _activetab == index ?Colors.transparent : AppColors.backgroundColor  ,
+                                      shadowColor: Colors.transparent ,
+                                      elevation: 0 ,
+
+                                    ),
+
+                                    onPressed: () {
+                                      setState(() {
+                                        _activetab = index ;
+                                      });
+                                    },
+
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child:  Text(
+                                        spot_categorie[index],
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  )),)
+                            ;}
+                          ),
+                        ),
+
+
+
+
+
+
+
+
+
+                      )
+                      ,
+                    ),
+
+
+                  ],
+
+
+                ),
               ),
-
-
-
-              child:Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              ListView(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
                 children: [
-                  Padding(padding: EdgeInsets.only(left:20 ,top: 30.0),
-                    child :  Text("Spot" , style : TextStyle( color: Colors.white,fontSize: 24 ,fontWeight: FontWeight.bold ),),
-                  ),
-
-
-                  SizedBox(height: 38),
                   Container(
-                    width: largeur /1.2,
-                    height: 48 ,
-                    margin: EdgeInsets.only(left:14, right: 14, bottom:  10 ),
+                    margin: EdgeInsets.only(left: 15.0 ,right: 15 ,top: 20.0) ,
+                    width: largeur,
+                    height: hauteur/8.5 ,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(45.0),
+                      borderRadius: BorderRadius.circular(30.0),
                       color: AppColors.backgroundButtonhomeColor,
                     ),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children : List.generate(3, (index) {
-                      return GestureDetector(
-                        child :  Container(
-                            margin: EdgeInsets.all(10),
-                            decoration: _activetab == index ? ShapeDecoration(shape: StadiumBorder(),
-                                gradient: LinearGradient (
-                                    colors: [
-                                      AppColors.signinButtonFirstColor ,
-                                      AppColors.signinButtonSecondColor,
-                                    ]
+                    child: Row (
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
 
-                                )
+                        Padding(   padding: EdgeInsets.all( 10),
+                          child:  Image.asset('images/bitcoin.png'),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(padding: EdgeInsets.only(bottom: 5, left: 5),
+                                  child:Text('BTCUSDT' ,
+                                    style: TextStyle(
+                                        color : Color.fromRGBO(181, 180, 255, 1),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w800 ),), ),
 
-                            ) : ShapeDecoration(shape: StadiumBorder(), color: AppColors.backgroundButtonhomeColor ) ,
-
-                          child : ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-
-                              shape: StadiumBorder(),
-                              // desctivate color and shadow
-                              primary: _activetab == index ?Colors.transparent : AppColors.backgroundColor  ,
-                              shadowColor: Colors.transparent ,
-                              elevation: 0 ,
-
+                                Padding(padding: EdgeInsets.only(bottom: 5, left: 5),
+                                  child: Text('Mar 21,01:27 PM' ,style: TextStyle(
+                                      fontSize: 8,
+                                      color: Color.fromRGBO(74, 0, 255, 1)
+                                  ),
+                                  ),
+                                ),
+                              ],
                             ),
+                            Row(
+                              children: [
+                                Container(
+                                    margin: EdgeInsets.symmetric(horizontal: 1.5),
+                                    decoration:  ShapeDecoration(shape: StadiumBorder(), color: AppColors.backgroundColor , ) ,
+                                    child:  Padding( padding: EdgeInsets.all(6), child:Text(
+                                      "Low risk",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(color:  Colors.white,fontSize:8 ),
+                                    ),) ,
+                                ),
+                                Container(
+                                    margin: EdgeInsets.symmetric(horizontal: 1.5),
 
+                                    decoration:  ShapeDecoration(shape: StadiumBorder(), color: AppColors.signinButtonSecondColor , ) ,
+                                    child:  Padding( padding: EdgeInsets.all(6), child:Text(
+                                      "Scalp 2.8 ",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(color:  Colors.white , fontSize: 8 ),
+
+
+                                    ),)
+                                ),
+                                Container(
+                                    margin: EdgeInsets.symmetric(horizontal: 1.5),
+
+                                    decoration:  ShapeDecoration(shape: StadiumBorder(), color: AppColors.signinButtonFirstColor , ) ,
+                                    child:  Padding( padding: EdgeInsets.all(6), child:Text(
+                                      "Stop 2.6",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(color:  Colors.white , fontSize: 8 ),
+                                    ),)
+                                ), // TODO minimze the code
+                              ],
+                            )
+                          ],
+                        ),
+                        LineChart(width: 50, height: 40, data: data, linePaint: linePaint),
+                        Container(
+                          alignment: Alignment.bottomRight,
+                          child : IconButton(
                             onPressed: () {
                               setState(() {
-                                _activetab = index ;
+                                selected = !selected;
+                                print(selected);
                               });
                             },
+                            icon: Icon( selected == true ? Icons.star_border : Icons.star ,color: Colors.white ,size: 18 ,),
 
-                            child: Container(
-                              alignment: Alignment.center,
-                              child:  Text(
-                                spot_categorie[index],
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          )),)
-                      ;}
-                    ),
-                    ),
-
-
-
-
-
-
-
-
-
-                    )
-                    ,
-                  ),
-
-
-                ],
-
-
-              ),
-            ),
-            ListView(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 20.0 , right: 20.0 ,top: 20.0) ,
-                  width: largeur,
-                  height: hauteur/8.5 ,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30.0),
-                    color: AppColors.backgroundButtonhomeColor,
-                  ),
-                  child: Row (
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-
-                      Padding(   padding: EdgeInsets.all( 10),
-                        child:  Image.asset('images/bitcoin.png'),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(padding: EdgeInsets.only(bottom: 5, left: 5),
-                                child:Text('BTCUSDT' ,
-                                  style: TextStyle(
-                                      color : Color.fromRGBO(181, 180, 255, 1),
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.w800 ),), ),
-
-                              Padding(padding: EdgeInsets.only(bottom: 5, left: 5),
-                                child: Text('Mar 21,01:27 PM' ,style: TextStyle(
-                                    fontSize: 13,
-                                    color: Color.fromRGBO(74, 0, 255, 1)
-                                ),
-                                ),
-                              ),
-                            ],
                           ),
-                          Row(
-                            children: [
-                              Container(
-                                  margin: EdgeInsets.symmetric(horizontal: 1.5),
-                                  decoration:  ShapeDecoration(shape: StadiumBorder(), color: AppColors.backgroundColor , ) ,
-                                  child:  Padding( padding: EdgeInsets.all(6), child:Text(
-                                    "Low risk",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(color:  Colors.white),
-                                  ),)
-                              ),
-                              Container(
-                                  margin: EdgeInsets.symmetric(horizontal: 1.5),
-
-                                  decoration:  ShapeDecoration(shape: StadiumBorder(), color: AppColors.signinButtonSecondColor , ) ,
-                                  child:  Padding( padding: EdgeInsets.all(6), child:Text(
-                                    "Scalp 2.8 ",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(color:  Colors.white),
-                                  ),)
-                              ),
-                              Container(
-                                  margin: EdgeInsets.symmetric(horizontal: 1.5),
-
-                                  decoration:  ShapeDecoration(shape: StadiumBorder(), color: AppColors.signinButtonFirstColor , ) ,
-                                  child:  Padding( padding: EdgeInsets.all(6), child:Text(
-                                    "Stop 2.6",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(color:  Colors.white),
-                                  ),)
-                              ), // TODO minimze the code
-                            ],
-                          )
-                        ],
-                      ),
-                      LineChart(width: 60, height: 40, data: data, linePaint: linePaint),
-                      Container(
-                        alignment: Alignment.bottomRight,
-                        margin: EdgeInsets.all(10),
-
-                        child : IconButton(
-                          onPressed: () {
-                            setState(() {
-                              selected = !selected;
-                              print(selected);
-                            });
-                          },
-                          icon: Icon( selected == true ? Icons.star_border : Icons.star ,color: Colors.white ,),
-
                         ),
-                      ),
 
 
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ), //     ListView.builder()
-            //  TODO create liste view ;
-          ]
+                ],
+              ), //     ListView.builder()
+              //  TODO create liste view ;
+            ]
+        ),
       ),
+
 
 
 
