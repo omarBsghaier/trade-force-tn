@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         bottomAppBarColor: AppColors.signupButtonColor
       ),
-      home:  SignUp (),
+      home:  IndexPage (),
     );
   }
 }
@@ -102,7 +102,6 @@ class   SignUp extends StatelessWidget {
 
             onPressed: () async {
               await GoogleSignInApi.login() ;
-             print('aaaaaaaaaaaa mcheet');
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => IndexPage()));
              } ,
             child: Ink(
@@ -134,7 +133,6 @@ class   SignUp extends StatelessWidget {
 
 Future  signIn( ) async {
     await GoogleSignInApi.login() ;
-    print('aaaaaaaaaaaa mcheet');
   }
 }
 
