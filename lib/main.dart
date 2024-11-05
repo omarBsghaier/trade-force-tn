@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         bottomAppBarColor: AppColors.signupButtonColor
       ),
-      home:  IndexPage (),
+      home:  SignUp (),
     );
   }
 }

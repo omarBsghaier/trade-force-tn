@@ -15,7 +15,7 @@ Login/Signup: Secure authentication for accessing your trading account.
 
 ### 1. Login Screen
 
-![Home 4](https://github.com/user-attachments/assets/6be1f9ce-1433-4410-8704-f05c5edfc0ff)
+![LOGIN](https://github.com/user-attachments/assets/1d967f77-7f81-41bd-9e87-b0a5cceaf453)
 
 ### 2. Home
 
@@ -23,12 +23,11 @@ Login/Signup: Secure authentication for accessing your trading account.
 
 ### 3. Spot Trading Screen
 
-The Spot Trading screen allows users to view the market, place buy and sell orders, and check real-time price updates for various cryptocurrencies.
 ![spot](https://github.com/user-attachments/assets/ca06b9ac-8923-4cbe-a053-9cd69aa3e01e)
 
 ### 4. Learning Hub
 
-The Learning Hub provides users with educational resources to improve their cryptocurrency trading knowledge. It includes articles, tutorials, and market analysis.
+![lear](https://github.com/user-attachments/assets/284f4116-9fc2-45e8-ba6a-bafc2eb15e8d)
 
 ### 5. Notifications
 
@@ -36,5 +35,4 @@ The Learning Hub provides users with educational resources to improve their cryp
 
 ### 6. Settings Screen
 
-The Settings screen allows users to manage their account preferences, including notifications, privacy, and security settings.
 ![settings](https://github.com/user-attachments/assets/dac359d7-5b0f-4187-8139-f02f052d60bb)
